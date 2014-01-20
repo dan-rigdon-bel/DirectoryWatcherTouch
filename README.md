@@ -1,6 +1,6 @@
 DirectoryWatcherTouch
 =========================
-This small library allow you to watch for change events to a folder in your iOS Application's file system using C# and MonoTouch.  At its core, DirectoryWatcherTouch is C# wrapper and MonoTouch binding around the Objective-C [DirectoryWatcher](https://developer.apple.com/library/ios/samplecode/DocInteraction/Listings/Classes_DirectoryWatcher_h.html) class by Apple.  The FileSystemWatcherTouch class provides a subset of the functionality of the C# .NET [FileSystemWatcher](http://msdn.microsoft.com/en-us/library/System.IO.FileSystemWatcher) class.
+This small library allows you to watch for change events to a folder in your iOS Application's file system using C# and MonoTouch.  At its core, DirectoryWatcherTouch is C# wrapper and MonoTouch binding around the Objective-C [DirectoryWatcher](https://developer.apple.com/library/ios/samplecode/DocInteraction/Listings/Classes_DirectoryWatcher_h.html) class by Apple.  The FileSystemWatcherTouch class provides a subset of the functionality of the C# .NET [FileSystemWatcher](http://msdn.microsoft.com/en-us/library/System.IO.FileSystemWatcher) class.
 	
 Pre-requisites
 --------------------
