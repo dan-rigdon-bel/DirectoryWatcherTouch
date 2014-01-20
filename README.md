@@ -1,6 +1,6 @@
 DirectoryWatcherTouch
 =========================
-A C# MonoTouch wrapper and binding around the Objective-C DirectoryWatcher class by Apple. This small library allow you to watch for change events to a Directory - the /Documents folder, for example.  DirectoryWatcherTouch provides a subset of the functionality of the C# .NET [FileSystemWatcher](http://msdn.microsoft.com/en-us/library/System.IO.FileSystemWatcher) class.
+This small library allow you to watch for change events to a folder in your iOS Application's file system using C# and MonoTouch.  At its core, DirectoryWatcherTouch is C# wrapper and MonoTouch binding around the Objective-C [DirectoryWatcher](https://developer.apple.com/library/ios/samplecode/DocInteraction/Listings/Classes_DirectoryWatcher_h.html) class by Apple.  The FileSystemWatcherTouch class provides a subset of the functionality of the C# .NET [FileSystemWatcher](http://msdn.microsoft.com/en-us/library/System.IO.FileSystemWatcher) class.
 	
 Pre-requisites
 --------------------
@@ -22,11 +22,19 @@ Installation / Configuration
 
 Usage
 ----------------------------
-Set up a file system watcher...
+Use DirectoryWatcherTouch...
+
+	using DirectoryWatcherTouch;
+	
+Create a property or backing field...
+
+	private FileSystemWatcherTouch DocumentsDirectoryWatcher { get; set; }
+
+Set up a FileSystemWatcher...
 
 	// Start watching the Documents folder...
 	string documentsFolder = Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
-	var DocumentsDirectoryWatcher = new FileSystemWatcherTouch (documentsFolder);
+	DocumentsDirectoryWatcher = new FileSystemWatcherTouch (documentsFolder);
 	DocumentsDirectoryWatcher.Changed += OnDirectoryDidChange;
 
 Handle change event callbacks...
@@ -53,7 +61,7 @@ The native DirectoryWatcher class comes from this [Apple iOS Developer Library s
 
 * Note on the Static Binary
 ----------------------------
-The build script (build_mobile.sh) included here builds a FAT binary targeting _iphonesimulator_, _armv7_, and _armv7s_.  To make the binary slightly smaller for release, you may remove the _iphonesimulator_ target.  Regardless, the FAT binary is quite small, so it may not be worth the effort.
+The  build_mobile.sh build script included here builds a FAT binary targeting _iphonesimulator_, _armv7_, and _armv7s_.  To make the binary slightly smaller for release, you may remove the _iphonesimulator_ target.  Regardless, the FAT binary is quite small, so it may not be worth the effort.
 
 Authors
 -------
