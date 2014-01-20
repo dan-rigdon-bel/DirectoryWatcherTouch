@@ -12,14 +12,13 @@ You are going to need:
 
 Installation / Configuration
 ----------------------------
-1.  Clone or download this repository to your Mac running OSX.  Place it in a convenient location such as Development/Repositories/DirectoryWatcherTouch or similar. 
-2.  Build the native, static libDirectoryWatcher.a library.  Open a terminal window and navigate to the DirectoryWatcherTouch/DirectoryWatcherNative/DirectoryWatcher folder.  (This folder contains a bash shell script for building the native library for the simulator, armv7 and armv7s.  These three architectures are bundled into single FAT binary using the lipo tool*)  Simply run the following command at the prompt:
+1.  Clone or download this repository to your Mac running OSX.  Place it in a convenient location such as _Development/Repositories/DirectoryWatcherTouch_ or similar. 
+2.  Build the native, static _libDirectoryWatcher.a_ library.  Open a terminal window and navigate to the _DirectoryWatcherTouch/DirectoryWatcherNative/DirectoryWatcher_ folder.  (This folder contains a bash shell script for building the native library for the _iphonesimulator_, _armv7_ and _armv7s_.  These three architectures are bundled into single FAT binary using the lipo tool - see note below)  Simply run the following command at the prompt:
     
-    sudo ./build_mobile.sh
+	sudo ./build_mobile.sh
     
-3.  Once the static library has successfully built, you need to point the .NET binding project (DirectoryWatcherTouch) to the correct location.  In Xamarin Studio or Visual Studio, ppen the DirectoryWatcherTouch Solution in the DirectoryWatcherTouch/DirectoryWatcherTouch folder.  The link to libDirectoryWatcher.a will be broken.  Reference this file into the project.
-4.  Clean and Build the DirectoryWatcherTouch project.  The resulting DirectoryWatcherTouch.dll that can be referenced into your project.
-
+3.  Once the static library has successfully built, you need to point the .NET binding project (_DirectoryWatcherTouch_) to the correct location.  In [Xamarin Studio](http://xamarin.com/studio) or [Visual Studio](http://msdn.microsoft.com/vstudio), open the _DirectoryWatcherTouch_ Solution contained in the _DirectoryWatcherTouch/DirectoryWatcherTouch_ folder.  The link to _libDirectoryWatcher.a_ may be broken and you will have to re-reference this file into the project.
+4.  Clean and Build the _DirectoryWatcherTouch_ project.  The resulting _DirectoryWatcherTouch.dll_ that can be referenced into your project.
 
 Usage
 ----------------------------
@@ -39,11 +38,11 @@ Handle change event callbacks...
 
 Detailed Info
 ----------------------------
-The native DirectoryWatcher class comes from this [Apple iOS Developer Library sample](https://developer.apple.com/library/ios/samplecode/DocInteraction/Listings/Classes_DirectoryWatcher_h.html).  This class uses the low-level kqueue kernel event notification system.  The MonoTouch bindings wrapping this small library attempt (in a small way) to mimic Microsoft .NET [FileSystemWatcher](http://msdn.microsoft.com/en-us/library/System.IO.FileSystemWatcher) class, though only the Changed event is current implemented.
+The native DirectoryWatcher class comes from this [Apple iOS Developer Library sample](https://developer.apple.com/library/ios/samplecode/DocInteraction/Listings/Classes_DirectoryWatcher_h.html).  This class uses the low-level _kqueue_ kernel event notification system.  The MonoTouch bindings wrapping this small library attempt (in a small way) to mimic Microsoft .NET [FileSystemWatcher](http://msdn.microsoft.com/en-us/library/System.IO.FileSystemWatcher) class, though only the _Changed_ event is current implemented.
 
 * Note on the Static Binary
 ----------------------------
-The build script (build_mobile.sh) included here builds a FAT binary targeting iphonesimulator, armv7, and armv7s.  To make the binary slightly larger for release, you may want to remove the iphonesimulator target.  Regardless, the lipo'd binary is quite small, so it may not be worth the effort.
+The build script (build_mobile.sh) included here builds a FAT binary targeting _iphonesimulator_, _armv7_, and _armv7s_.  To make the binary slightly smaller for release, you may remove the _iphonesimulator_ target.  Regardless, the FAT binary is quite small, so it may not be worth the effort.
 
 Authors
 -------
