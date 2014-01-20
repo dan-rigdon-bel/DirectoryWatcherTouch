@@ -26,7 +26,7 @@ Set up a file system watcher...
 
 	// Start watching the Documents folder...
 	string documentsFolder = Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
-	DocumentsDirectoryWatcher = new FileSystemWatcherTouch (documentsFolder);
+	var DocumentsDirectoryWatcher = new FileSystemWatcherTouch (documentsFolder);
 	DocumentsDirectoryWatcher.Changed += OnDirectoryDidChange;
 
 Handle change event callbacks...
@@ -34,6 +34,17 @@ Handle change event callbacks...
 	public void OnDirectoryDidChange (object sender, EventArgs args) {
 		Console.WriteLine ("Change detected in the Documents folder");
 		// Handle the change...
+	}
+
+Make sure you clean up after yourself when done...for example, in AppDelegate you might:
+
+	public override void WillTerminate (UIApplication application)
+	{
+		base.WillTerminate (application);
+
+		// Stop watching the Documents folder...
+		DocumentsDirectoryWatcher.Changed -= OnDirectoryDidChange;
+		DocumentsDirectoryWatcher.Dispose (); // This calls Invalidate() on the native watcher.
 	}
 
 Detailed Info
